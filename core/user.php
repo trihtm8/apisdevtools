@@ -52,7 +52,11 @@ function user_create_user($username, $name, $email, $password){
  */
 function user_update_user($id, $username, $name, $email, $password){
     $data = [];
-    if ($username == null && $name == null && $email == null && $password == null) return;
+    if ($username == null && $name == null && $email == null && $password == null) 
+    return 
+"{
+    'nothing_change':'Nothing to update, and request was not sent.'
+}";
     if ($username != null) {
         $data["username"] = $username;
     }
