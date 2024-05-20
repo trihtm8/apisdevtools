@@ -25,7 +25,7 @@ class Log{
     public function list_params($nametype, $detail){
         $this->params_list[count($this->params_list)] = $nametype;
         $this->params_detail[count( $this->params_detail)] = $detail;
-        $this->params_value[count( $this->params_value)] = "";
+        $this->params_value[count( $this->params_value)] = null;
     }
 
     public function load_params($name, $c_value){
@@ -49,6 +49,7 @@ $logs = [
     new Log("create_user", "/core/user.php", "Create an user", "user"), #2
     new Log("get_user_by_id","/core/user.php", "Get user infomation by id", "user"), #3
     new Log("update_user","/core/user", "Update user infomation", "user"), #4
+    new Log("find_users","/core/user.php","Find users", "user"), #5
 ];
 
 $logs[2]->list_params("username:text", "Username");
@@ -63,3 +64,6 @@ $logs[4]->list_params("username:text", "Username");
 $logs[4]->list_params("name:text", "Full name");
 $logs[4]->list_params("email:text", "Email");
 $logs[4]->list_params("password:password","Password");
+
+$logs[5]->list_params("string_in_username:text","String for search in username");
+$logs[5]->list_params("string_in_email:text","String for search in email");

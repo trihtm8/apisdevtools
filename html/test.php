@@ -19,6 +19,12 @@ require_once __DIR__."/../tools/log.php";
     $command = "";
     $response = "";
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        if (isset($_POST["gitlab_url"]) && $_POST["gitlab_url"] != "") {
+            $gitlab_url = $_POST["gitlab_url"];
+        }
+        if (isset($_POST["token"]) && $_POST["token"] != "") {
+            $super_token = $_POST["token"];
+        }
         if (isset($_POST["route"])){
             $route_group = $_POST["route"];
             $route_group_name = $route_group."_route";
@@ -65,6 +71,7 @@ require_once __DIR__."/../tools/log.php";
     <textarea id="ajax" style="width: 500px; height: 50px" disabled></textarea>
     <h5>Response:</h5>
     <textarea style="width: 100%; height: 500px; overflow-x: auto; overflow-y: auto" disabled><?=pretty($response)?></textarea>
+
     <script>
         param_paths = [];
         const route_selecter =document.getElementById("route");
@@ -95,9 +102,10 @@ require_once __DIR__."/../tools/log.php";
                     }
                 }
             });
+            const param_div =document.getElementById("params");
+            param_div.innerHTML="";
             param_paths[responsetext.split("#")[0].split("||")[0]].forEach(element =>{
                 if (element!=""){
-                    const param_div =document.getElementById("params");
                     const newLabel =document.createElement('label');
                     newLabel.setAttribute("for", element.split(":")[0]+"_param");
                     newLabel.textContent = "$"+element.split(":")[0];
@@ -115,9 +123,10 @@ require_once __DIR__."/../tools/log.php";
 
         const cs_routes=document.getElementById("c-routes");
         cs_routes.addEventListener('change', function(){
+            const param_div =document.getElementById("params");
+            param_div.innerHTML="";
             param_paths[this.value].forEach(element => {
                 if (element!=""){
-                    const param_div =document.getElementById("params");
                     const newLabel =document.createElement('label');
                     newLabel.setAttribute("for", element.split(":")[0]+"_param");
                     newLabel.textContent = "$"+element.split(":")[0];
