@@ -10,22 +10,24 @@ function user_get_users(){
 }
 
 /**
- * Get ifomation of user by gitlab user_id
+ * Get information of user by GitLab user_id
  * 
  * @param string $id GitLab user id 
+ * @return mixed Response from the GitLab API
  */
 function user_get_user_by_id($id){
     return call("GET","users/$id");
 }
 
 /**
- * Create an user
- * You should only save "id" field in function response to moodle database (into GitLabAccount table)
+ * Create a user
+ * You should only save the "id" field in the function response to the Moodle database (into GitLabAccount table)
  * 
  * @param string $username Username
  * @param string $name Full name of user
  * @param string $email Email
  * @param string $password Password
+ * @return mixed Response from the GitLab API
  */
 function user_create_user($username, $name, $email, $password){
     $data = [
@@ -38,6 +40,16 @@ function user_create_user($username, $name, $email, $password){
     return call("POST","users", $data);
 }
 
+/**
+ * Update a user
+ * 
+ * @param string $id GitLab user id
+ * @param string|null $username Username (optional)
+ * @param string|null $name Full name of user (optional)
+ * @param string|null $email Email (optional)
+ * @param string|null $password Password (optional)
+ * @return mixed Response from the GitLab API
+ */
 function user_update_user($id, $username, $name, $email, $password){
     $data = [];
     if ($username == null && $name == null && $email == null && $password == null) return;
@@ -55,3 +67,4 @@ function user_update_user($id, $username, $name, $email, $password){
     }
     return call("PUT","users/$id", $data);
 }
+
