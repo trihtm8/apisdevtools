@@ -95,9 +95,10 @@ require_once __DIR__."/../tools/log.php";
                     }
                 }
             });
+            const param_div =document.getElementById("params");
+            param_div.innerHTML="";
             param_paths[responsetext.split("#")[0].split("||")[0]].forEach(element =>{
                 if (element!=""){
-                    const param_div =document.getElementById("params");
                     const newLabel =document.createElement('label');
                     newLabel.setAttribute("for", element.split(":")[0]+"_param");
                     newLabel.textContent = "$"+element.split(":")[0];
@@ -115,9 +116,10 @@ require_once __DIR__."/../tools/log.php";
 
         const cs_routes=document.getElementById("c-routes");
         cs_routes.addEventListener('change', function(){
+            const param_div =document.getElementById("params");
+            param_div.innerHTML="";
             param_paths[this.value].forEach(element => {
                 if (element!=""){
-                    const param_div =document.getElementById("params");
                     const newLabel =document.createElement('label');
                     newLabel.setAttribute("for", element.split(":")[0]+"_param");
                     newLabel.textContent = "$"+element.split(":")[0];
