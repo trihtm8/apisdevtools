@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../core/call.php";
-require_once __DIR__ . "/../core/user.php";
+require_once __DIR__ . "/../core/gitlabuser.php";
 
 /**
  * Class Log
@@ -38,11 +38,11 @@ class Log {
     public $route_name;
 
     /**
-     * The group to which the route belongs.
+     * The Class of function.
      *
      * @var string
      */
-    public $route_group;
+    public $class_name;
 
     /**
      * List of parameter names and type_of_input_HTML_elements.
@@ -71,13 +71,13 @@ class Log {
      * @param string $function_name The name of the function.
      * @param string $function_located The location of the function.
      * @param string $route_name The name of the route.
-     * @param string $route_group The group to which the route belongs.
+     * @param string $class_name The group to which the route belongs.
      */
-    public function __construct($function_name, $function_located, $route_name, $route_group) {
+    public function __construct($function_name, $function_located, $route_name, $class_name) {
         $this->function_name = $function_name;
         $this->function_located = $function_located;
         $this->route_name = $route_name;
-        $this->route_group = $route_group;
+        $this->class_name = $class_name;
     }
 
     /**
@@ -86,7 +86,16 @@ class Log {
      * @return mixed The result of the function call.
      */
     public function run() {
-        return call_user_func_array($this->route_group . "_" . $this->function_name, $this->params_value);
+        if (class_exists($this->class_name)) {
+            $obj = new $this->class_name();
+            if (method_exists($obj, $this->function_name)) {
+                return call_user_func_array([$obj, $this->function_name], $this->params_value);
+            } else {
+                throw new Exception("Method '{$this->function_name}' does not exist in class '{$this->class_name}'.");
+            }
+        } else {
+            throw new Exception("Class '{$this->class_name}' does not exist.");
+        }
     }
 
     /**
@@ -124,18 +133,18 @@ class Log {
      * @return string The location and function information.
      */
     public function get_located() {
-        return $this->function_located . ": " . $this->route_group . "_" . $this->function_name;
+        return $this->function_located . ": " . $this->class_name . "->" . $this->function_name;
     }
 }
 
 // Example usage of the Log class with parameter definitions
 $logs = [
-    new Log("call", "/core/call.php", "Call APIs", "call"), #0
-    new Log("get_users", "/core/user.php", "List all users", "user"), #1
-    new Log("create_user", "/core/user.php", "Create a user", "user"), #2
-    new Log("get_user_by_id", "/core/user.php", "Get user information by id", "user"), #3
-    new Log("update_user", "/core/user", "Update user information", "user"), #4
-    new Log("find_users", "/core/user.php", "Find users", "user"), #5
+    new Log("execute", "/core/call.php", "Call APIs", "GitLabModel"), #0
+    new Log("get_users", "/core/user.php", "List all users", "GitLabUser"), #1
+    new Log("create_user", "/core/user.php", "Create a user", "GitLabUser"), #2
+    new Log("get_user_by_id", "/core/user.php", "Get user information by id", "GitLabUser"), #3
+    new Log("update_user", "/core/user", "Update user information", "GitLabUser"), #4
+    new Log("find_users", "/core/user.php", "Find users", "GitLabUser"), #5
 ];
 
 // Define parameters for specific logs
