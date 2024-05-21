@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET' && isset($_GET["group"])) {
             echo $log->route_name;
             echo "||";
             foreach ($log->params_list as $key => $name){
-                echo "$name;";
+                echo "$name:{$log->params_detail[$key]};";
             };
         }
     }

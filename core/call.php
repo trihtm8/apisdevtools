@@ -16,8 +16,16 @@ $gitlab_url = "http://gitlab.localhost:2050";
 $super_token = "glpat-omodUmXsdQQQgRh5e7PS";
 
 /**
+ * Debug mode
+ * 
+ * @var string
+ */
+$debug_mode = false;
+
+/**
  * Perform a request to the GitLab API. 
  * You must correct your `$gitlab_url` and `$super_token` before using this function.
+ * Setting `$debug_mode=true` to echo request information.
  *
  * @param string $method HTTP method (GET, POST, PUT, DELETE)
  * @param string $endpoint API endpoint
@@ -60,13 +68,18 @@ function call($method, $endpoint, $data = null, $token = null){
     }
 
     $response = curl_exec($ch);
-    echo "<hr> <h5>Call function:</h5> <h5>Url: $url</h5> <h5>Status Code: ";
-    echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
-    echo "</h5> <h5>Function: /core/call.php --> call();</h5> <h5>Params: \$method=\"$method\" | \$endpoint=\"$endpoint\" | \$token=\"$access_token\" </h5>";
-    echo "<h5> Data:</h5>";
-    var_dump($data);
-    echo "<hr>";
-    curl_close($ch);
+    global $debug_mode;
+    if ($debug_mode){
+        require_once __DIR__."/../tools/jsonstring.php";
+        echo "<hr> <h5>Call function:</h5> <h5>Url: $url</h5> <h5>Status Code: ";
+        echo curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        echo "</h5> <h5>Function: /core/call.php --> call();</h5> <h5>Params: \$method=\"$method\" | \$endpoint=\"$endpoint\" | \$token=\"$access_token\" </h5>";
+        echo "<h5> Data:</h5>";
+        var_dump($data);
+        echo "<hr>";
+        curl_close($ch);
+    }
+    
 
     return $response;
 }

@@ -1,6 +1,7 @@
 <?php
 require_once __DIR__."/../tools/jsonstring.php";
 require_once __DIR__."/../tools/log.php";
+// $debug_mode=true;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -67,8 +68,10 @@ require_once __DIR__."/../tools/log.php";
     </form>
     <h5>Function:</h5>
     <textarea style="width: 500px; height: 50px" disabled><?=$function?></textarea>
+    <?php if ($debug_mode): ?>
     <h5>Ajax response:</h5>
     <textarea id="ajax" style="width: 500px; height: 50px" disabled></textarea>
+    <?php endif;?>
     <h5>Response:</h5>
     <textarea style="width: 100%; height: 500px; overflow-x: auto; overflow-y: auto" disabled><?=pretty($response)?></textarea>
 
@@ -78,8 +81,10 @@ require_once __DIR__."/../tools/log.php";
         route_selecter.addEventListener('change',async function(){
             param_paths=[];
             const select_value = this.value;
+            <?php if ($debug_mode):?>
             const ajax_content =document.getElementById("ajax");
             ajax_content.innerHTML='Loading routes in "' + select_value + '" group';
+            <?php endif; ?>
             const c_routes =document.getElementById("c-routes");
             c_routes.setAttribute("name", this.value+"_route");
             c_routes.innerHTML = "";
@@ -89,7 +94,9 @@ require_once __DIR__."/../tools/log.php";
             )
 
             responsetext = await response.text();
+            <?php if ($debug_mode): ?>
             ajax_content.innerHTML =responsetext;
+            <?php endif; ?>
             responsetext.split('#').forEach(element => {
                 if (element != ""){
                     const paths = element.split("||");
@@ -104,7 +111,8 @@ require_once __DIR__."/../tools/log.php";
             });
             const param_div =document.getElementById("params");
             param_div.innerHTML="";
-            param_paths[responsetext.split("#")[0].split("||")[0]].forEach(element =>{
+            if (responsetext!="")
+            param_paths[responsetext.split("#")[1].split("||")[0]].forEach(element =>{
                 if (element!=""){
                     const newLabel =document.createElement('label');
                     newLabel.setAttribute("for", element.split(":")[0]+"_param");
@@ -113,8 +121,14 @@ require_once __DIR__."/../tools/log.php";
                     newInput.setAttribute('id', element.split(":")[0]+"_param");
                     newInput.setAttribute('name', element.split(":")[0]);
                     newInput.setAttribute('type', element.split(":")[1]);
+                    const newDetail =document.createElement("button");
+                    newDetail.setAttribute("title", element.split(":")[2]);
+                    newDetail.disabled=true;
+                    newDetail.textContent="?";
+                    newDetail.setAttribute("style", "border-radius: 50%;")
                     param_div.appendChild(newLabel);
                     param_div.appendChild(newInput);
+                    param_div.appendChild(newDetail);
                     const br =document.createElement("br");
                     param_div.appendChild(br);
                 }
@@ -134,8 +148,14 @@ require_once __DIR__."/../tools/log.php";
                     newInput.setAttribute('id', element.split(":")[0]+"_param");
                     newInput.setAttribute('name', element.split(":")[0]);
                     newInput.setAttribute('type', element.split(":")[1]);
+                    const newDetail =document.createElement("button");
+                    newDetail.setAttribute("title", element.split(":")[2]);
+                    newDetail.disabled=true;
+                    newDetail.textContent="?";
+                    newDetail.setAttribute("style", "border-radius: 50%;")
                     param_div.appendChild(newLabel);
                     param_div.appendChild(newInput);
+                    param_div.appendChild(newDetail);
                     const br =document.createElement("br");
                     param_div.appendChild(br);
                 }
