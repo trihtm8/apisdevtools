@@ -13,7 +13,7 @@ $gitlab_url = "http://gitlab.localhost:2050";
  *
  * @var string
  */
-$super_token = "glpat-omodUmXsdQQQgRh5e7PS";
+require_once __DIR__."/constant.php";
 
 /**
  * Debug mode
