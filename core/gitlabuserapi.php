@@ -1,17 +1,12 @@
 <?php
 require_once __DIR__ . "/call.php";
 
-<<<<<<< HEAD:core/gitlabuserapi.php
 class GitLabUserApi {
     public static $instance = null;
-=======
-class GitLabUser {
-    private static $instance = null;
->>>>>>> 1a0f2a6413b42f3916a6979775d7be79e66bf3d5:core/gitlabuser.php
 
     public static function getInstance() {
         if (is_null(self::$instance)) {
-            self::$instance = new GitLabUser();
+            self::$instance = new GitLabUserApi();
         }
 
         return self::$instance;
