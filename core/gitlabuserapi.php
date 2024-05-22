@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__ . "/call.php";
 
-class GitLabUser {
+class GitLabUserApi {
     public static $instance = null;
 
     public function getInstance() {
