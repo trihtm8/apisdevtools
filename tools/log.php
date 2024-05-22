@@ -1,7 +1,7 @@
 <?php
 
 require_once __DIR__ . "/../core/call.php";
-require_once __DIR__ . "/../core/gitlabuser.php";
+require_once __DIR__ . "/../core/gitlabuserapi.php";
 
 /**
  * Class Log

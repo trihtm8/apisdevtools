@@ -90,7 +90,7 @@ require_once __DIR__."/../tools/log.php";
             c_routes.innerHTML = "";
 
             const response = await fetch (
-                "http://localhost/moodle/apisdevtools/html/routes.ajax.php?group="+select_value
+                "http://localhost/apisdevtools/html/routes.ajax.php?group="+select_value
             )
 
             responsetext = await response.text();
