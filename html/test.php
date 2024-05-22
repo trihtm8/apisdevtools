@@ -1,7 +1,7 @@
 <?php
 require_once __DIR__."/../tools/jsonstring.php";
 require_once __DIR__."/../tools/log.php";
-// $debug_mode=true;
+$debug_mode=true;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,7 +31,7 @@ require_once __DIR__."/../tools/log.php";
             $route_group_name = $route_group."_route";
             $function_name = $_POST[$route_group_name];
             foreach ($logs as $index => $log) {
-                if ($log->function_name == $function_name) {
+                if ($log->function_name == $function_name && $log->class_name == $route_group) {
                     foreach ($_POST as $key => $value) {
                         $log->load_params($key, $value);
                     }
@@ -55,7 +55,9 @@ require_once __DIR__."/../tools/log.php";
         <select id="route" name="route">
             <option value="nochoise">Choose a class</option>
             <option value="GitLabUserApi">GitLabUserApi</option>
-            <option value="GitLabRepoApi">GitLabRepo</option>
+            <option value="GitlabRepositoryApi">GitLabRepo</option>
+            <option value="GitLabProjectApi">GitLabProject</option>
+            <option value="GitLabBranchApi">GitLabBranch</option>
         </select>
         <hr>
         <label for="c-routes">Choose a route: </label>
@@ -75,7 +77,8 @@ require_once __DIR__."/../tools/log.php";
     <?php endif;?>
     <h5>Response:</h5>
     <textarea style="width: 100%; height: 500px; overflow-x: auto; overflow-y: auto" disabled><?=pretty($response)?></textarea>
-
+    <h5>No pretty response:</h5>
+    <textarea style="width: 100%; height: 500px; overflow-x: auto; overflow-y: auto" disabled><?=$response?></textarea>
     <script>
         param_paths = [];
         const route_selecter =document.getElementById("route");

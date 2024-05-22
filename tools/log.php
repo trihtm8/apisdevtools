@@ -3,6 +3,8 @@
 require_once __DIR__ . "/../core/call.php";
 require_once __DIR__ . "/../core/gitlabuserapi.php";
 require_once __DIR__ . "/../core/gitlabrepoapi.php";
+require_once __DIR__ . "/../core/gitlabprojectapi.php";
+require_once __DIR__ . "/../core/gitlabbranchapi.php";
 
 
 /**
@@ -142,12 +144,27 @@ class Log {
 // Example usage of the Log class with parameter definitions
 $logs = [
     new Log("execute", "/core/call.php", "Call APIs", "GitLabModel"), #0
-    new Log("get_users", "/core/user.php", "List all users", "GitLabUserApi"), #1
-    new Log("create_user", "/core/user.php", "Create a user", "GitLabUserApi"), #2
-    new Log("get_user_by_id", "/core/user.php", "Get user information by id", "GitLabUserApi"), #3
+    new Log("get_users", "/core/gitlabuserapi.php", "List all users", "GitLabUserApi"), #1
+    new Log("create_user", "/core/gitlabuserapi.php", "Create a user", "GitLabUserApi"), #2
+    new Log("get_by_id", "/core/gitlabuserapi.php", "Get user information by id", "GitLabUserApi"), #3
     new Log("update_user", "/core/user", "Update user information", "GitLabUserApi"), #4
-    new Log("find_users", "/core/user.php", "Find users", "GitLabUserApi"), #5
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi") #6
+    new Log("find_users", "/core/gitlabuserapi.php", "Find users", "GitLabUserApi"), #5
+    new Log("delete_by_id", "/core/gitlabuserapi.php", "Delete user", "GitLabUserApi"), #6
+
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
+
+    new Log("get_projects", "/core/gitlabprojectapi.php", "List all projects", "GitLabProjectApi"), #8
+    new Log("get_by_id", "/core/gitlabprojectapi.php", "Get project information by id", "GitLabProjectApi"), #9
+    new Log("create_project", "/core/gitlabprojectapi.php", "Create a project", "GitLabProjectApi"), #10
+    new Log("update_project", "/core/gitlabprojectapi.php", "Update project information", "GitLabProjectApi"), #11
+    new Log("find_projects", "/core/gitlabprojectapi.php", "Find projects", "GitLabProjectApi"), #12
+    new Log("delete_by_id", "/core/gitlabprojectapi.php", "Delete project", "GitLabProjectApi"), #13
+    new Log("create_project_for_user", "/core/gitlabprojectapi.php", "Create a project for a specific user", "GitLabProjectApi"), #14
+
+    new Log("get_branches", "/core/gitlabbranchapi.php", "List all branches in a project", "GitLabBranchApi"), #15
+    new Log("get_branch", "/core/gitlabbranchapi.php", "Get a branch in a project", "GitLabBranchApi"), #16
+    new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #17
+    new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #18
 ];
 
 // Define parameters for specific logs
@@ -167,7 +184,45 @@ $logs[4]->list_params("password:password", "Password");
 $logs[5]->list_params("string_in_username:text", "String for search in username");
 $logs[5]->list_params("string_in_email:text", "String for search in email");
 
-$logs[6]->list_params("project_id:text", "Project id");
-$logs[6]->list_params("per_page:text", "Number of items per page");
-$logs[6]->list_params("ref:text", "Reference");
-$logs[6]->list_params("path:text", "Path");
+$logs[6]->list_params("id:text", "User id");
+
+$logs[7]->list_params("project_id:text", "Project id");
+$logs[7]->list_params("per_page:text", "Number of items per page");
+$logs[7]->list_params("ref:text", "Reference");
+$logs[7]->list_params("path:text", "Path");
+
+$logs[8]->list_params("page:int", "Page number");
+$logs[8]->list_params("per_page:int", "Number of items per page");
+
+$logs[9]->list_params("id:text", "Project id");
+
+$logs[10]->list_params("name:text", "Project name");
+$logs[10]->list_params("description:text", "Description");
+$logs[10]->list_params("visibility:boolean", "Visibility");
+
+$logs[11]->list_params("id:text", "Project id");
+$logs[11]->list_params("name:text", "Project name");
+$logs[11]->list_params("description:text", "Description");
+$logs[11]->list_params("visibility:boolean", "Visibility");
+
+$logs[12]->list_params("string_in_name:text", "String for search in project name");
+$logs[12]->list_params("string_in_description:text", "String for search in description");
+
+$logs[13]->list_params("id:text", "Project id");
+
+$logs[14]->list_params("name:text", "Project name");
+$logs[14]->list_params("description:text", "Description");
+$logs[14]->list_params("user_id:text", "User id");
+$logs[14]->list_params("visibility:boolean", "Visibility");
+
+$logs[15]->list_params("project_id:text", "Project id");
+
+$logs[16]->list_params("project_id:text", "Project id");
+$logs[16]->list_params("branch_name:text", "Branch name");
+
+$logs[17]->list_params("project_id:text", "Project id");
+$logs[17]->list_params("branch_name:text", "Branch name");
+$logs[17]->list_params("ref:text", "Reference");
+
+$logs[18]->list_params("project_id:text", "Project id");
+$logs[18]->list_params("branch_name:text", "Branch name");
