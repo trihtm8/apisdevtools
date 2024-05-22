@@ -2,8 +2,17 @@
 require_once __DIR__ . "/call.php";
 
 class GitLabUser {
+    public static $instance = null;
 
-    public function __construct() {
+    public function getInstance() {
+        if (is_null($this->instance)) {
+            $this->instance = new GitLabUser();
+        }
+
+        return $this->instance;
+    }
+
+    private function __construct() {
         // Empty constructor
     }
 
@@ -11,7 +20,10 @@ class GitLabUser {
      * List all users in gitlab server.
      * Required `$super_token` in call.php
      */
-    public function get_users() {
+    public static function get_users() {
+        if (is_null(self::$instance)) {
+            return;
+        }
         return call("GET", "users");
     }
 
@@ -21,7 +33,10 @@ class GitLabUser {
      * @param string $id GitLab user id 
      * @return mixed Response from the GitLab API
      */
-    public function get_by_id($id) {
+    public static function get_by_id($id) {
+        if (is_null(self::$instance)) {
+            return;
+        }
         return call("GET", "users/$id");
     }
 
@@ -35,7 +50,11 @@ class GitLabUser {
      * @param string $password Password
      * @return mixed Response from the GitLab API
      */
-    public function create_user($username, $name, $email, $password) {
+    public static function create_user($username, $name, $email, $password) {
+        if (is_null(self::$instance)) {
+            return;
+        }
+
         if (empty($username) || empty($name) || empty($email) || empty($password)) {
             return json_encode(array("error" => "Required all parameters"));
         }
@@ -59,7 +78,10 @@ class GitLabUser {
      * @param string|null $password Password (optional)
      * @return mixed Response from the GitLab API
      */
-    public function update_user($id, $username = null, $name = null, $email = null, $password = null) {
+    public static function update_user($id, $username = null, $name = null, $email = null, $password = null) {
+        if (is_null(self::$instance)) {
+            return;
+        }
         $data = [];
         if ($username == null && $name == null && $email == null && $password == null) {
             return json_encode(["error" => "Nothing to update, and request was not sent."]);
@@ -87,7 +109,10 @@ class GitLabUser {
      * `$string_in_email` must be `<search_string>@<mail_domain>`, `<search_string>` can be empty string and `<mail_domain>` must exactly
      * @return mixed Response from the GitLab API or a message if no parameters are provided
      */
-    public function find_users($string_in_username = null, $string_in_email = null) {
+    public static function find_users($string_in_username = null, $string_in_email = null) {
+        if (is_null(self::$instance)) {
+            return;
+        }
         if (empty($string_in_email) && empty($string_in_username)) {
             return json_encode(["error" => "No information provided to search."]);
         }
