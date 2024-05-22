@@ -66,7 +66,7 @@ class GitLabProjectApi {
         }else{
             $data["visibility"] = "private";
         }
-        return call("POST", "projects", "v4", $data);
+        return call("POST", "projects", $data);
     }
 
     /**
@@ -95,7 +95,7 @@ class GitLabProjectApi {
         if (!empty($visibility)) {
             $data["visibility"] = $visibility;
         }
-        return call("PUT", "projects/$id", "v4", $data);
+        return call("PUT", "projects/$id", $data);
     }
 
     /**
@@ -173,6 +173,6 @@ class GitLabProjectApi {
         }else{
             $data["visibility"] = "private";
         }
-        return call("POST", "projects/user/$user_id", "v4", $data);
+        return call("POST", "projects/user/$user_id", $data);
     }
 }

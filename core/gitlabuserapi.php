@@ -65,7 +65,7 @@ class GitLabUserApi {
             "password" => $password,
             "skip_confirmation" => true
         ];
-        return call("POST", "users", "v4", $data);
+        return call("POST", "users", $data);
     }
 
     /**
@@ -98,7 +98,7 @@ class GitLabUserApi {
         if (empty($password)) {
             $data["password"] = $password;
         }
-        return call("PUT", "users/$id", "v4", $data);
+        return call("PUT", "users/$id", $data);
     }
 
     /**

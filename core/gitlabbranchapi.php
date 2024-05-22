@@ -63,7 +63,7 @@ class GitLabBranchApi {
             "branch" => $branch_name,
             "ref" => $ref
         ];
-        return call("POST", "projects/$project_id/repository/branches", "v4", $data);
+        return call("POST", "projects/$project_id/repository/branches", $data);
     }
 
     /**
