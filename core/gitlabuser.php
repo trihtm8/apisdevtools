@@ -2,20 +2,20 @@
 require_once __DIR__ . "/call.php";
 
 class GitLabUser {
-    public static $instance = null;
+    private static $instance = null;
 
-    public function getInstance() {
-        if (is_null($this->instance)) {
-            $this->instance = new GitLabUser();
+    public static function getInstance() {
+        if (is_null(self::$instance)) {
+            self::$instance = new GitLabUser();
         }
 
-        return $this->instance;
+        return self::$instance;
     }
 
     private function __construct() {
         // Empty constructor
     }
-
+    
     /**
      * List all users in gitlab server.
      * Required `$super_token` in call.php

@@ -87,7 +87,7 @@ class Log {
      */
     public function run() {
         if (class_exists($this->class_name)) {
-            $obj = new $this->class_name();
+            $obj = $this->class_name::getInstance();
             if (method_exists($obj, $this->function_name)) {
                 return call_user_func_array([$obj, $this->function_name], $this->params_value);
             } else {
