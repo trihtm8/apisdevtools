@@ -33,7 +33,7 @@ $debug_mode = false;
  * @param string|null $token Access token (optional)
  * @return mixed Response from the GitLab API
  */
-function call($method, $endpoint, $version = "v4", $data = null, $token = null){
+function call($method, $endpoint, $data = null, $is_form_data = false, $token = null, $version = "v4"){
     global $gitlab_url, $super_token;
 
     $access_token = ($token != null) ? $token : $super_token;
@@ -41,11 +41,16 @@ function call($method, $endpoint, $version = "v4", $data = null, $token = null){
 
     $ch = curl_init($url);
 
+    $header = [
+        "PRIVATE-TOKEN: $access_token"
+    ];
+
+    if (!$is_form_data) {
+        array_push($header, "Content-Type: application/json");
+    }
+
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array(
-        "PRIVATE-TOKEN: $access_token",
-        "Content-Type: application/json"
-    ));
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $header);
 
     switch ($method) {
         case 'GET':
@@ -53,7 +58,11 @@ function call($method, $endpoint, $version = "v4", $data = null, $token = null){
             break;
         case 'POST':
             curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            if ($is_form_data) {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            } else {
+                curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
+            }
             break;
         case 'PUT':
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'PUT');
