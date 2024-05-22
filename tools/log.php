@@ -2,6 +2,8 @@
 
 require_once __DIR__ . "/../core/call.php";
 require_once __DIR__ . "/../core/gitlabuserapi.php";
+require_once __DIR__ . "/../core/gitlabrepoapi.php";
+
 
 /**
  * Class Log
@@ -140,11 +142,12 @@ class Log {
 // Example usage of the Log class with parameter definitions
 $logs = [
     new Log("execute", "/core/call.php", "Call APIs", "GitLabModel"), #0
-    new Log("get_users", "/core/user.php", "List all users", "GitLabUser"), #1
-    new Log("create_user", "/core/user.php", "Create a user", "GitLabUser"), #2
-    new Log("get_user_by_id", "/core/user.php", "Get user information by id", "GitLabUser"), #3
-    new Log("update_user", "/core/user", "Update user information", "GitLabUser"), #4
-    new Log("find_users", "/core/user.php", "Find users", "GitLabUser"), #5
+    new Log("get_users", "/core/user.php", "List all users", "GitLabUserApi"), #1
+    new Log("create_user", "/core/user.php", "Create a user", "GitLabUserApi"), #2
+    new Log("get_user_by_id", "/core/user.php", "Get user information by id", "GitLabUserApi"), #3
+    new Log("update_user", "/core/user", "Update user information", "GitLabUserApi"), #4
+    new Log("find_users", "/core/user.php", "Find users", "GitLabUserApi"), #5
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi") #6
 ];
 
 // Define parameters for specific logs
@@ -163,3 +166,8 @@ $logs[4]->list_params("password:password", "Password");
 
 $logs[5]->list_params("string_in_username:text", "String for search in username");
 $logs[5]->list_params("string_in_email:text", "String for search in email");
+
+$logs[6]->list_params("project_id:text", "Project id");
+$logs[6]->list_params("per_page:text", "Number of items per page");
+$logs[6]->list_params("ref:text", "Reference");
+$logs[6]->list_params("path:text", "Path");

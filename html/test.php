@@ -54,7 +54,8 @@ require_once __DIR__."/../tools/log.php";
         <label for="route">Route group (Class):</label>
         <select id="route" name="route">
             <option value="nochoise">Choose a class</option>
-            <option value="GitLabUser">GitLabUser</option>
+            <option value="GitLabUserApi">GitLabUserApi</option>
+            <option value="GitLabRepoApi">GitLabRepo</option>
         </select>
         <hr>
         <label for="c-routes">Choose a route: </label>

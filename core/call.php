@@ -13,7 +13,7 @@ $gitlab_url = "http://gitlab.localhost:2050";
  *
  * @var string
  */
-require_once __DIR__."/constant.php";
+require_once "../constant.php";
 
 /**
  * Debug mode
@@ -33,11 +33,11 @@ $debug_mode = false;
  * @param string|null $token Access token (optional)
  * @return mixed Response from the GitLab API
  */
-function call($method, $endpoint, $data = null, $token = null){
+function call($method, $endpoint, $version = "v4", $data = null, $token = null){
     global $gitlab_url, $super_token;
 
     $access_token = ($token != null) ? $token : $super_token;
-    $url = "$gitlab_url/api/v4/$endpoint";
+    $url = "$gitlab_url/api/$version/$endpoint";
 
     $ch = curl_init($url);
 
