@@ -167,6 +167,7 @@ $logs = [
     new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
     new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #7
     new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #8
+    
     new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #9
     new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #10
     new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
@@ -175,6 +176,7 @@ $logs = [
 ];
 
 // Define parameters for specific logs
+#User
 $logs[2]->list_params("username:text", "Username");
 $logs[2]->list_params("name:text", "Full name");
 $logs[2]->list_params("email:text", "Email");
@@ -198,6 +200,7 @@ $logs[7]->list_params("per_page:text", "Number of items per page");
 $logs[7]->list_params("ref:text", "Reference");
 $logs[7]->list_params("path:text", "Path");
 
+#Project
 $logs[8]->list_params("page:int", "Page number");
 $logs[8]->list_params("per_page:int", "Number of items per page");
 
@@ -222,6 +225,7 @@ $logs[14]->list_params("description:text", "Description");
 $logs[14]->list_params("user_id:text", "User id");
 $logs[14]->list_params("visibility:boolean", "Visibility");
 
+#Branch
 $logs[15]->list_params("project_id:text", "Project id");
 
 $logs[16]->list_params("project_id:text", "Project id");
@@ -233,3 +237,34 @@ $logs[17]->list_params("ref:text", "Reference");
 
 $logs[18]->list_params("project_id:text", "Project id");
 $logs[18]->list_params("branch_name:text", "Branch name");
+
+$logs[6]->list_params("project_id:text", "Project id");
+$logs[6]->list_params("per_page:text", "Number of items per page");
+$logs[6]->list_params("ref:text", "Reference");
+$logs[6]->list_params("path:text", "Path");
+
+$logs[7]->list_params("project_id:text", "Project id");
+$logs[7]->list_params("sha:text", "ID of blob file");
+
+$logs[8]->list_params("project_id:text", "Project id");
+$logs[8]->list_params("sha:text", "ID of blob file");
+
+$logs[9]->list_params("project_id:text", "Project id");
+$logs[9]->list_params("ref:text", "Branch name");
+$logs[9]->list_params("path:text", "Path");
+
+$logs[10]->list_params("project_id:text", "Project id");
+$logs[10]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+
+$logs[11]->list_params("project_id:text", "Project id");
+$logs[11]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+
+$logs[12]->list_params("project_id:text", "Project id");
+$logs[12]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+
+$logs[13]->list_params("project_id:text", "Project id");
+$logs[13]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+$logs[13]->list_params("note:text", "The text of the comment");
+$logs[13]->list_params("path:text", "The file path relative to the repository");
+$logs[13]->list_params("line:text", "The line number where the comment should be placed");
+$logs[13]->list_params("line_type:text", "The line type");
