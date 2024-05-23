@@ -31,12 +31,32 @@ class GitlabRepositoryApi {
             $params["ref"] = $ref;
         }
 
-        $param_url = "/projects/$project_id/repository/tree?";
+        $param_url = "projects/$project_id/repository/tree?";
 
         foreach($params as $key => $value) {
             $param_url .= "$key=$value&";
         }
         $param_url = rtrim($param_url, "&");
+
+        return call("GET", $param_url);
+    }
+
+    public static function get_blob($project_id, $sha) {
+        if (self::$instance == null) {
+            return;
+        }
+
+        $param_url = "projects/$project_id/repository/blobs/$sha";
+    
+        return call("GET", $param_url);
+    }
+
+    public static function get_raw_blob_content($project_id, $sha) {
+        if (self::$instance == null) {
+            return;
+        }
+
+        $param_url = "projects/$project_id/repository/blobs/$sha/raw";
 
         return call("GET", $param_url);
     }
