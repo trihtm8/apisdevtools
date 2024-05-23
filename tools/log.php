@@ -5,6 +5,7 @@ require_once __DIR__ . "/../core/gitlabuserapi.php";
 require_once __DIR__ . "/../core/gitlabrepoapi.php";
 require_once __DIR__ . "/../core/gitlabprojectapi.php";
 require_once __DIR__ . "/../core/gitlabbranchapi.php";
+require_once __DIR__ . "/../core/gitlabcommitapi.php";
 
 
 /**
@@ -125,6 +126,7 @@ class Log {
     public function load_params($name, $c_value) {
         foreach ($this->params_list as $key => $paramname) {
             if (explode(":", $paramname)[0] == $name) {
+                if (!empty($c_value))
                 $this->params_value[$key] = $c_value;
                 break;
             }
