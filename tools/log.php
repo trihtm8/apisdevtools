@@ -155,6 +155,7 @@ $logs = [
     new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
     new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #12  
     new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #13
+    new Log("create_commit", "/core/gitlabcommitapi.php", "Create commit", "GitlabCommitApi"), #14
 ];
 
 // Define parameters for specific logs
@@ -204,3 +205,7 @@ $logs[13]->list_params("note:text", "The text of the comment");
 $logs[13]->list_params("path:text", "The file path relative to the repository");
 $logs[13]->list_params("line:text", "The line number where the comment should be placed");
 $logs[13]->list_params("line_type:text", "The line type");
+
+$logs[14]->list_params("project_id:text", "Project id");
+$logs[14]->list_params("branch:text", "Name of the branch");
+$logs[14]->list_params("commit_message:text", "Commit message.");
