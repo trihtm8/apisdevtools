@@ -218,8 +218,8 @@ $logs[11]->list_params("string_in_description:text", "String for search in descr
 $logs[12]->list_params("id:text", "Project id");
 
 $logs[13]->list_params("name:text", "Project name");
-$logs[13]->list_params("description:text", "Description");
 $logs[13]->list_params("user_id:text", "User id");
+$logs[13]->list_params("description:text", "Description");
 $logs[13]->list_params("visibility:boolean", "Visibility");
 
 #Branch

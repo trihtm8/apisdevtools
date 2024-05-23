@@ -151,7 +151,7 @@ class GitLabProjectApi {
      * @param bool $visibility Visibility level of the project (optional, default is `private`)
      * @return mixed Response from the GitLab API
      */
-    public static function create_project_for_user($name, $description = null, $user_id, $visibility = "private") {
+    public static function create_project_for_user($name, $user_id, $description = null, $visibility = "private") {
         if (is_null(self::$instance)) {
             return;
         }
