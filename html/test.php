@@ -55,10 +55,10 @@ $debug_mode=true;
         <select id="route" name="route">
             <option value="nochoise">Choose a class</option>
             <option value="GitLabUserApi">GitLabUserApi</option>
-            <option value="GitlabRepositoryApi">GitLabRepo</option>
+            <option value="GitLabRepositoryApi">GitLabRepo</option>
             <option value="GitLabProjectApi">GitLabProject</option>
             <option value="GitLabBranchApi">GitLabBranch</option>
-            <option value="GitlabCommitApi">GitLabCommit</option>
+            <option value="GitLabCommitApi">GitLabCommit</option>
         </select>
         <hr>
         <label for="c-routes">Choose a route: </label>
