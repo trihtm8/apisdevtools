@@ -151,8 +151,6 @@ $logs = [
     new Log("find_users", "/core/gitlabuserapi.php", "Find users", "GitLabUserApi"), #5
     new Log("delete_by_id", "/core/gitlabuserapi.php", "Delete user", "GitLabUserApi"), #6
 
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
-
     new Log("get_projects", "/core/gitlabprojectapi.php", "List all projects", "GitLabProjectApi"), #8
     new Log("get_by_id", "/core/gitlabprojectapi.php", "Get project information by id", "GitLabProjectApi"), #9
     new Log("create_project", "/core/gitlabprojectapi.php", "Create a project", "GitLabProjectApi"), #10
@@ -165,6 +163,15 @@ $logs = [
     new Log("get_branch", "/core/gitlabbranchapi.php", "Get a branch in a project", "GitLabBranchApi"), #16
     new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #17
     new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #18
+
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
+    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #7
+    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #8
+    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #9
+    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #10
+    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
+    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #12  
+    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #13
 ];
 
 // Define parameters for specific logs
