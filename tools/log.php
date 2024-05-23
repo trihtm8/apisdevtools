@@ -151,28 +151,28 @@ $logs = [
     new Log("find_users", "/core/gitlabuserapi.php", "Find users", "GitLabUserApi"), #5
     new Log("delete_by_id", "/core/gitlabuserapi.php", "Delete user", "GitLabUserApi"), #6
 
-    new Log("get_projects", "/core/gitlabprojectapi.php", "List all projects", "GitLabProjectApi"), #8
-    new Log("get_by_id", "/core/gitlabprojectapi.php", "Get project information by id", "GitLabProjectApi"), #9
-    new Log("create_project", "/core/gitlabprojectapi.php", "Create a project", "GitLabProjectApi"), #10
-    new Log("update_project", "/core/gitlabprojectapi.php", "Update project information", "GitLabProjectApi"), #11
-    new Log("find_projects", "/core/gitlabprojectapi.php", "Find projects", "GitLabProjectApi"), #12
-    new Log("delete_by_id", "/core/gitlabprojectapi.php", "Delete project", "GitLabProjectApi"), #13
-    new Log("create_project_for_user", "/core/gitlabprojectapi.php", "Create a project for a specific user", "GitLabProjectApi"), #14
+    new Log("get_projects", "/core/gitlabprojectapi.php", "List all projects", "GitLabProjectApi"), #7
+    new Log("get_by_id", "/core/gitlabprojectapi.php", "Get project information by id", "GitLabProjectApi"), #8
+    new Log("create_project", "/core/gitlabprojectapi.php", "Create a project", "GitLabProjectApi"), #9
+    new Log("update_project", "/core/gitlabprojectapi.php", "Update project information", "GitLabProjectApi"), #10
+    new Log("find_projects", "/core/gitlabprojectapi.php", "Find projects", "GitLabProjectApi"), #11
+    new Log("delete_by_id", "/core/gitlabprojectapi.php", "Delete project", "GitLabProjectApi"), #12
+    new Log("create_project_for_user", "/core/gitlabprojectapi.php", "Create a project for a specific user", "GitLabProjectApi"), #13
 
-    new Log("get_branches", "/core/gitlabbranchapi.php", "List all branches in a project", "GitLabBranchApi"), #15
-    new Log("get_branch", "/core/gitlabbranchapi.php", "Get a branch in a project", "GitLabBranchApi"), #16
-    new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #17
-    new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #18
+    new Log("get_branches", "/core/gitlabbranchapi.php", "List all branches in a project", "GitLabBranchApi"), #14
+    new Log("get_branch", "/core/gitlabbranchapi.php", "Get a branch in a project", "GitLabBranchApi"), #15
+    new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #16
+    new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #17
 
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
-    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #7
-    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #8
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #18
+    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #19
+    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #20
 
-    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #9
-    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #10
-    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
-    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #12  
-    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #13
+    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #21
+    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #22
+    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #23
+    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #24
+    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #25
 ];
 
 // Define parameters for specific logs
@@ -196,75 +196,72 @@ $logs[5]->list_params("string_in_email:text", "String for search in email");
 $logs[6]->list_params("id:text", "User id");
 
 #Project
-$logs[8]->list_params("page:int", "Page number");
-$logs[8]->list_params("per_page:int", "Number of items per page");
+$logs[7]->list_params("page:int", "Page number");
+$logs[7]->list_params("per_page:int", "Number of items per page");
 
-$logs[9]->list_params("id:text", "Project id");
+$logs[8]->list_params("id:text", "Project id");
 
+$logs[9]->list_params("name:text", "Project name");
+$logs[9]->list_params("description:text", "Description");
+$logs[9]->list_params("visibility:boolean", "Visibility");
+
+$logs[10]->list_params("id:text", "Project id");
 $logs[10]->list_params("name:text", "Project name");
 $logs[10]->list_params("description:text", "Description");
 $logs[10]->list_params("visibility:boolean", "Visibility");
 
-$logs[11]->list_params("id:text", "Project id");
-$logs[11]->list_params("name:text", "Project name");
-$logs[11]->list_params("description:text", "Description");
-$logs[11]->list_params("visibility:boolean", "Visibility");
+$logs[11]->list_params("string_in_name:text", "String for search in project name");
+$logs[11]->list_params("string_in_description:text", "String for search in description");
 
-$logs[12]->list_params("string_in_name:text", "String for search in project name");
-$logs[12]->list_params("string_in_description:text", "String for search in description");
+$logs[12]->list_params("id:text", "Project id");
 
-$logs[13]->list_params("id:text", "Project id");
-
-$logs[14]->list_params("name:text", "Project name");
-$logs[14]->list_params("description:text", "Description");
-$logs[14]->list_params("user_id:text", "User id");
-$logs[14]->list_params("visibility:boolean", "Visibility");
+$logs[13]->list_params("name:text", "Project name");
+$logs[13]->list_params("description:text", "Description");
+$logs[13]->list_params("user_id:text", "User id");
+$logs[13]->list_params("visibility:boolean", "Visibility");
 
 #Branch
+$logs[14]->list_params("project_id:text", "Project id");
+
 $logs[15]->list_params("project_id:text", "Project id");
+$logs[15]->list_params("branch_name:text", "Branch name");
 
 $logs[16]->list_params("project_id:text", "Project id");
 $logs[16]->list_params("branch_name:text", "Branch name");
+$logs[16]->list_params("ref:text", "Reference");
 
 $logs[17]->list_params("project_id:text", "Project id");
 $logs[17]->list_params("branch_name:text", "Branch name");
-$logs[17]->list_params("ref:text", "Reference");
 
+#Repo
 $logs[18]->list_params("project_id:text", "Project id");
-$logs[18]->list_params("branch_name:text", "Branch name");
+$logs[18]->list_params("per_page:text", "Number of items per page");
+$logs[18]->list_params("ref:text", "Reference");
+$logs[18]->list_params("path:text", "Path");
 
-$logs[6]->list_params("project_id:text", "Project id");
-$logs[6]->list_params("per_page:text", "Number of items per page");
-$logs[6]->list_params("ref:text", "Reference");
-$logs[6]->list_params("path:text", "Path");
+$logs[19]->list_params("project_id:text", "Project id");
+$logs[19]->list_params("sha:text", "ID of blob file");
 
-$logs[7]->list_params("project_id:text", "Project id");
-$logs[7]->list_params("per_page:text", "Number of items per page");
-$logs[7]->list_params("ref:text", "Reference");
-$logs[7]->list_params("path:text", "Path");
+$logs[20]->list_params("project_id:text", "Project id");
+$logs[20]->list_params("sha:text", "ID of blob file");
 
-$logs[7]->list_params("project_id:text", "Project id");
-$logs[7]->list_params("sha:text", "ID of blob file");
+#Commit
+$logs[21]->list_params("project_id:text", "Project id");
+$logs[21]->list_params("ref:text", "Branch name");
+$logs[21]->list_params("path:text", "Path");
 
-$logs[8]->list_params("project_id:text", "Project id");
-$logs[8]->list_params("sha:text", "ID of blob file");
+$logs[22]->list_params("project_id:text", "Project id");
+$logs[22]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
 
-$logs[9]->list_params("project_id:text", "Project id");
-$logs[9]->list_params("ref:text", "Branch name");
-$logs[9]->list_params("path:text", "Path");
+$logs[23]->list_params("project_id:text", "Project id");
+$logs[23]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
 
-$logs[10]->list_params("project_id:text", "Project id");
-$logs[10]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+$logs[24]->list_params("project_id:text", "Project id");
+$logs[24]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
 
-$logs[11]->list_params("project_id:text", "Project id");
-$logs[11]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-
-$logs[12]->list_params("project_id:text", "Project id");
-$logs[12]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-
-$logs[13]->list_params("project_id:text", "Project id");
-$logs[13]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-$logs[13]->list_params("note:text", "The text of the comment");
-$logs[13]->list_params("path:text", "The file path relative to the repository");
-$logs[13]->list_params("line:text", "The line number where the comment should be placed");
-$logs[13]->list_params("line_type:text", "The line type");
+$logs[25]->list_params("project_id:text", "Project id");
+$logs[25]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
+$logs[25]->list_params("note:text", "The text of the comment");
+$logs[25]->list_params("path:text", "The file path relative to the repository");
+$logs[25]->list_params("line:text", "The line number where the comment should be placed");
+$logs[25]->list_params("line_type:text", "The line type");
