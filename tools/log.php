@@ -167,7 +167,7 @@ $logs = [
     new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #7
     new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #7
     new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #8
-    
+
     new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #9
     new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #10
     new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
@@ -194,11 +194,6 @@ $logs[5]->list_params("string_in_username:text", "String for search in username"
 $logs[5]->list_params("string_in_email:text", "String for search in email");
 
 $logs[6]->list_params("id:text", "User id");
-
-$logs[7]->list_params("project_id:text", "Project id");
-$logs[7]->list_params("per_page:text", "Number of items per page");
-$logs[7]->list_params("ref:text", "Reference");
-$logs[7]->list_params("path:text", "Path");
 
 #Project
 $logs[8]->list_params("page:int", "Page number");
@@ -242,6 +237,11 @@ $logs[6]->list_params("project_id:text", "Project id");
 $logs[6]->list_params("per_page:text", "Number of items per page");
 $logs[6]->list_params("ref:text", "Reference");
 $logs[6]->list_params("path:text", "Path");
+
+$logs[7]->list_params("project_id:text", "Project id");
+$logs[7]->list_params("per_page:text", "Number of items per page");
+$logs[7]->list_params("ref:text", "Reference");
+$logs[7]->list_params("path:text", "Path");
 
 $logs[7]->list_params("project_id:text", "Project id");
 $logs[7]->list_params("sha:text", "ID of blob file");
