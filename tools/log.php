@@ -3,14 +3,10 @@
 require_once __DIR__ . "/../core/call.php";
 require_once __DIR__ . "/../core/gitlabuserapi.php";
 require_once __DIR__ . "/../core/gitlabrepoapi.php";
-<<<<<<< HEAD
-require_once __DIR__ . "/../core/gitlabcommitapi.php";
-=======
 require_once __DIR__ . "/../core/gitlabprojectapi.php";
 require_once __DIR__ . "/../core/gitlabbranchapi.php";
 require_once __DIR__ . "/../core/gitlabcommitapi.php";
 
->>>>>>> acb6005e8e7125104ea75acb281acc7b8cd644d5
 
 /**
  * Class Log
@@ -154,17 +150,6 @@ $logs = [
     new Log("create_user", "/core/gitlabuserapi.php", "Create a user", "GitLabUserApi"), #2
     new Log("get_by_id", "/core/gitlabuserapi.php", "Get user information by id", "GitLabUserApi"), #3
     new Log("update_user", "/core/user", "Update user information", "GitLabUserApi"), #4
-<<<<<<< HEAD
-    new Log("find_users", "/core/user.php", "Find users", "GitLabUserApi"), #5
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #6
-    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #7
-    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #8
-    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #9
-    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #10
-    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #11
-    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #12  
-    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #13
-=======
     new Log("find_users", "/core/gitlabuserapi.php", "Find users", "GitLabUserApi"), #5
     new Log("delete_by_id", "/core/gitlabuserapi.php", "Delete user", "GitLabUserApi"), #6
 
@@ -181,16 +166,15 @@ $logs = [
     new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #16
     new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #17
 
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #18
-    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #19
-    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #20
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitLabRepositoryApi"), #18
+    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitLabRepositoryApi"), #19
+    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitLabRepositoryApi"), #20
 
-    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #21
-    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #22
-    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #23
-    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #24
-    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #25
->>>>>>> acb6005e8e7125104ea75acb281acc7b8cd644d5
+    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitLabCommitApi"), #21
+    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitLabCommitApi"), #22
+    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitLabCommitApi"), #23
+    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitLabCommitApi"), #24
+    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitLabCommitApi"), #25
 ];
 
 // Define parameters for specific logs
@@ -211,38 +195,6 @@ $logs[4]->list_params("password:password", "Password");
 $logs[5]->list_params("string_in_username:text", "String for search in username");
 $logs[5]->list_params("string_in_email:text", "String for search in email");
 
-<<<<<<< HEAD
-$logs[6]->list_params("project_id:text", "Project id");
-$logs[6]->list_params("per_page:text", "Number of items per page");
-$logs[6]->list_params("ref:text", "Reference");
-$logs[6]->list_params("path:text", "Path");
-
-$logs[7]->list_params("project_id:text", "Project id");
-$logs[7]->list_params("sha:text", "ID of blob file");
-
-$logs[8]->list_params("project_id:text", "Project id");
-$logs[8]->list_params("sha:text", "ID of blob file");
-
-$logs[9]->list_params("project_id:text", "Project id");
-$logs[9]->list_params("ref:text", "Branch name");
-$logs[9]->list_params("path:text", "Path");
-
-$logs[10]->list_params("project_id:text", "Project id");
-$logs[10]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-
-$logs[11]->list_params("project_id:text", "Project id");
-$logs[11]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-
-$logs[12]->list_params("project_id:text", "Project id");
-$logs[12]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-
-$logs[13]->list_params("project_id:text", "Project id");
-$logs[13]->list_params("sha:text", "The commit hash or name of a repository branch or tag");
-$logs[13]->list_params("note:text", "The text of the comment");
-$logs[13]->list_params("path:text", "The file path relative to the repository");
-$logs[13]->list_params("line:text", "The line number where the comment should be placed");
-$logs[13]->list_params("line_type:text", "The line type");
-=======
 $logs[6]->list_params("id:text", "User id");
 
 #Project
@@ -315,4 +267,3 @@ $logs[25]->list_params("note:text", "The text of the comment");
 $logs[25]->list_params("path:text", "The file path relative to the repository");
 $logs[25]->list_params("line:text", "The line number where the comment should be placed");
 $logs[25]->list_params("line_type:text", "The line type");
->>>>>>> acb6005e8e7125104ea75acb281acc7b8cd644d5
