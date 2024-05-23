@@ -6,7 +6,7 @@ class GitlabRepositoryApi {
 
     public static function getInstance() {
         if (is_null(self::$instance)) {
-            self::$instance = new GitLabRepositoryApi();
+            self::$instance = new GitlabRepositoryApi();
         }
 
         return self::$instance;
