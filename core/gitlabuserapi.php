@@ -83,19 +83,19 @@ class GitLabUserApi {
             return;
         }
         $data = [];
-        if ($username == null && $name == null && $email == null && $password == null) {
+        if (empty($username) && empty($name) && empty($email) && empty($password)) {
             return json_encode(["error" => "Nothing to update, and request was not sent."]);
         }
-        if ($username != null) {
+        if (empty($username)) {
             $data["username"] = $username;
         }
-        if ($name != null) {
+        if (empty($name)) {
             $data["name"] = $name;
         }
-        if ($email != null) {
+        if (empty($email)) {
             $data["email"] = $email;
         }
-        if ($password != null) {
+        if (empty($password)) {
             $data["password"] = $password;
         }
         return call("PUT", "users/$id", $data);
@@ -122,14 +122,27 @@ class GitLabUserApi {
         }
 
         $params = [];
-        if ($string_in_username !== null) {
+        if (!empty($string_in_username)) {
             $params['search'] = $string_in_username;
-        } elseif ($string_in_email !== null) {
+        } elseif (!empty($string_in_email !== null)) {
             $params['search'] = $string_in_email;
         }
 
         $query_string = http_build_query($params);
 
         return call("GET", "users?$query_string");
+    }
+
+    /**
+     * Get information of user by GitLab id
+     * 
+     * @param string $id GitLab user id 
+     * @return mixed Response from the GitLab API
+     */
+    public static function delete_by_id($id) {
+        if (is_null(self::$instance)) {
+            return;
+        }
+        return call("DELETE", "users/$id");
     }
 }
