@@ -166,15 +166,15 @@ $logs = [
     new Log("create_branch", "/core/gitlabbranchapi.php", "Create a branch in a project", "GitLabBranchApi"), #16
     new Log("delete_branch", "/core/gitlabbranchapi.php", "Delete a branch in a project", "GitLabBranchApi"), #17
 
-    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitlabRepositoryApi"), #18
-    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitlabRepositoryApi"), #19
-    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitlabRepositoryApi"), #20
+    new Log("get_repository_tree", "/core/gitlabrepoapi.php", "Get repository tree", "GitLabRepositoryApi"), #18
+    new Log("get_blob", "/core/gitlabrepoapi.php", "Get blob", "GitLabRepositoryApi"), #19
+    new Log("get_raw_blob_content", "/core/gitlabrepoapi.php", "Get raw blob content", "GitLabRepositoryApi"), #20
 
-    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitlabCommitApi"), #21
-    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitlabCommitApi"), #22
-    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitlabCommitApi"), #23
-    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitlabCommitApi"), #24
-    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitlabCommitApi"), #25
+    new Log("get_list_repository_commit", "/core/gitlabcommitapi.php", "Get list of commit of a repository", "GitLabCommitApi"), #21
+    new Log("get_single_commit", "/core/gitlabcommitapi.php", "Get a single commit", "GitLabCommitApi"), #22
+    new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitLabCommitApi"), #23
+    new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitLabCommitApi"), #24
+    new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitLabCommitApi"), #25
 ];
 
 // Define parameters for specific logs
