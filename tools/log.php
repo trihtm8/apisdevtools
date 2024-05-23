@@ -292,14 +292,20 @@ $logs[29]->list_params("file_path:text", "The file path relative to the reposito
 $logs[29]->list_params("branch:text", "Branch name");
 $logs[29]->list_params("commit_message:text", "The commit message.");
 $logs[29]->list_params("content:text", "The file’s content.");
+$logs[29]->list_params("author_email:text", "Email of author");
+$logs[29]->list_params("author_name:text", "Name of author");
 
 $logs[30]->list_params("project_id:text", "Project id");
 $logs[30]->list_params("file_path:text", "The file path relative to the repository");
 $logs[30]->list_params("branch:text", "Branch name");
 $logs[30]->list_params("commit_message:text", "The commit message.");
 $logs[30]->list_params("content:text", "The file’s content.");
+$logs[30]->list_params("author_email:text", "Email of author");
+$logs[30]->list_params("author_name:text", "Name of author");
 
 $logs[31]->list_params("project_id:text", "Project id");
 $logs[31]->list_params("file_path:text", "The file path relative to the repository");
 $logs[31]->list_params("branch:text", "Branch name");
 $logs[31]->list_params("commit_message:text", "The commit message.");
+$logs[31]->list_params("author_email:text", "Email of author");
+$logs[31]->list_params("author_name:text", "Name of author");

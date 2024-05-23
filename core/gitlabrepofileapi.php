@@ -82,7 +82,7 @@ class GitLabRepositoryFileApi {
      * @param string $content The file’s content.
      * @return mixed Response from the GitLab API
      */
-    public static function create_new_file_in_repository($project_id, $file_path, $branch, $commit_message, $content) {
+    public static function create_new_file_in_repository($project_id, $file_path, $branch, $commit_message, $content, $author_email = null, $author_name = null) {
         if (self::$instance == null) {
             return;
         }
@@ -90,8 +90,16 @@ class GitLabRepositoryFileApi {
         $data = [
             "branch" => $branch,
             "commit_message" => $commit_message,
-            "content" => $content
+            "content" => $content,
         ];
+
+        if ($author_email != null) {
+            $data["author_email"] = $author_email;
+        }
+
+        if ($author_name != null) {
+            $data["author_name"] = $author_name;
+        }
 
         $urlencodepath = urlencode($file_path);
 
@@ -107,7 +115,7 @@ class GitLabRepositoryFileApi {
      * @param string $content The file’s content.
      * @return mixed Response from the GitLab API
      */
-    public static function update_existing_file_in_repository($project_id, $file_path, $branch, $commit_message, $content) {
+    public static function update_existing_file_in_repository($project_id, $file_path, $branch, $commit_message, $content, $author_email = null, $author_name = null) {
         if (self::$instance == null) {
             return;
         }
@@ -117,6 +125,14 @@ class GitLabRepositoryFileApi {
             "commit_message" => $commit_message,
             "content" => $content
         ];
+
+        if ($author_email != null) {
+            $data["author_email"] = $author_email;
+        }
+
+        if ($author_name != null) {
+            $data["author_name"] = $author_name;
+        }
 
         $urlencodepath = urlencode($file_path);
 
@@ -131,7 +147,7 @@ class GitLabRepositoryFileApi {
      * @param string $commit_message The commit message.
      * @return mixed Response from the GitLab API
      */
-    public static function delete_existing_file_in_repository($project_id, $file_path, $branch, $commit_message) {
+    public static function delete_existing_file_in_repository($project_id, $file_path, $branch, $commit_message, $author_email = null, $author_name = null) {
         if (self::$instance == null) {
             return;
         }
@@ -140,6 +156,14 @@ class GitLabRepositoryFileApi {
             "branch" => $branch,
             "commit_message" => $commit_message,
         ];
+
+        if ($author_email != null) {
+            $data["author_email"] = $author_email;
+        }
+
+        if ($author_name != null) {
+            $data["author_name"] = $author_name;
+        }
 
         $urlencodepath = urlencode($file_path);
 
