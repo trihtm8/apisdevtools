@@ -182,7 +182,6 @@ $logs = [
     new Log("create_new_file_in_repository", "/core/gitlabcommitapi.php", "create a single file.", "GitLabRepositoryFileApi"), #29
     new Log("update_existing_file_in_repository", "/core/gitlabcommitapi.php", "update a single file.", "GitLabRepositoryFileApi"), #30
     new Log("delete_existing_file_in_repository", "/core/gitlabcommitapi.php", "delete a single file.", "GitLabRepositoryFileApi"), #31
-
 ];
 
 // Define parameters for specific logs
