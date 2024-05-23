@@ -16,6 +16,13 @@ class GitlabCommitApi {
         // Empty constructor
     }
 
+    /**
+     * Get a list of repository commits in a project.
+     * @param string $project_id The ID or URL-encoded path of the project.
+     * @param string|null $ref The name of a repository branch, tag or revision range, or if not given the default branch.
+     * @param string|null $path The file path.
+     * @return mixed Response from the GitLab API.
+     */
     public static function get_list_repository_commit($project_id, $ref = null, $path = null) {
         $endpoint = "projects/$project_id/repository/commits";
         $params = [];
@@ -35,18 +42,52 @@ class GitlabCommitApi {
         return call("GET", "projects/$project_id/repository/commits");
     }
 
+    /**
+     * Get a specific commit identified by the commit hash or name of a branch or tag.
+     * @param string $project_id The ID or URL-encoded path of the project.
+     * @param string $sha The commit hash or name of a repository branch or tag.
+     * @return mixed Response from the GitLab API
+     */
     public static function get_single_commit($project_id, $sha) {
         return call("GET", "projects/$project_id/repository/commits/$sha");
     }
 
+    /**
+     * Get the diff of a commit in a project.
+     * @param string $project_id The ID or URL-encoded path of the project.
+     * @param string $sha The commit hash or name of a repository branch or tag.
+     * @return mixed Response from the GitLab API
+     */
     public static function get_diff_commit($project_id, $sha) {
         return call("GET", "projects/$project_id/repository/commits/$sha/diff");
     }
 
+    /**
+     * Get the comments of a commit in a project.
+     * @param string $project_id The ID or URL-encoded path of the project.
+     * @param string $sha The commit hash or name of a repository branch or tag.
+     * @return mixed Response from the GitLab API
+     */
     public static function get_comment_of_commit($project_id, $sha) {
         return call("GET", "projects/$project_id/repository/commits/$sha/comments");
     }
 
+    /**
+     * Adds a comment to a commit.
+     * To post a comment in a particular line of a particular file, you must specify the full commit SHA, the path, the line, and line_type should be new.
+     * The comment is added at the end of the last commit if at least one of the cases below is valid:
+     * - the `$sha` is instead a branch or a tag and the line or path are invalid.
+     * - the `$line` number is invalid (does not exist).
+     * - the `$path` is invalid (does not exist).
+     * In any of the above cases, the response of line, line_type and path is set to null.
+     * @param string $project_id The ID or URL-encoded path of the project.
+     * @param string $sha The commit SHA or name of a repository branch or tag.
+     * @param string $note The text of the comment.
+     * @param string|null $path The file path relative to the repository.
+     * @param int|null $line The file path relative to the repository.
+     * @param string|null $line_type The line type. Takes new or old as arguments
+     * @return mixed Response from the GitLab API
+     */
     public static function post_comment_to_commit($project_id, $sha, $note, $path = null, $line = null, $line_type = null) {
         $data = [
             "note" => $note,
@@ -66,21 +107,5 @@ class GitlabCommitApi {
         }
         
         return call("POST", "projects/$project_id/repository/commits/$sha/comments", $data);
-    }
-
-    public static function create_project_for_specific_user($project_name, $user_id, $project_description = null) {
-        $data = [
-            "name" => $project_name,
-            "user_id" => $user_id,
-            "visibility" => "private"
-        ];
-
-        if ($project_description != null) {
-            $data["description"] = $project_description;
-        }
-
-        $response = call("POST", "projects/user/$user_id", $data);
-
-        // if ($response.has)
     }
 }
