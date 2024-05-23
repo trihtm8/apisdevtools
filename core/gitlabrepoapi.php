@@ -32,6 +32,7 @@ class GitLabRepositoryApi {
         $params = [
             "per_page" => $per_page,
         ];
+        
         if ($path != null) {
             $params["path"] = $path;
         }

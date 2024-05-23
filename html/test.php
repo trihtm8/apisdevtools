@@ -59,6 +59,7 @@ $debug_mode=true;
             <option value="GitLabProjectApi">GitLabProject</option>
             <option value="GitLabBranchApi">GitLabBranch</option>
             <option value="GitLabCommitApi">GitLabCommit</option>
+            <option value="GitLabRepositoryFileApi">GitLabRepositoryFile </option>
         </select>
         <hr>
         <label for="c-routes">Choose a route: </label>

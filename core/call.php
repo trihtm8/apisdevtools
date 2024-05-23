@@ -70,6 +70,7 @@ function call($method, $endpoint, $data = null, $is_form_data = false, $token = 
             break;
         case 'DELETE':
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, 'DELETE');
+            curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
             break;
         default:
             curl_close($ch);

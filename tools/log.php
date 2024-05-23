@@ -6,7 +6,7 @@ require_once __DIR__ . "/../core/gitlabrepoapi.php";
 require_once __DIR__ . "/../core/gitlabprojectapi.php";
 require_once __DIR__ . "/../core/gitlabbranchapi.php";
 require_once __DIR__ . "/../core/gitlabcommitapi.php";
-
+require_once __DIR__ . "/../core/gitlabrepofileapi.php";
 
 /**
  * Class Log
@@ -175,6 +175,14 @@ $logs = [
     new Log("get_diff_commit", "/core/gitlabcommitapi.php", "Get the diff of a commit in a project.", "GitLabCommitApi"), #23
     new Log("get_comment_of_commit", "/core/gitlabcommitapi.php", "Get comments of a commit.", "GitLabCommitApi"), #24
     new Log("post_comment_to_commit", "/core/gitlabcommitapi.php", "Adds a comment to a commit..", "GitLabCommitApi"), #25
+
+    new Log("get_file_from_repository", "/core/gitlabrepofileapi.php", "Allows you to receive information about file in repository", "GitLabRepositoryFileApi"), #26
+    new Log("get_file_blame_from_repository", "/core/gitlabcommitapi.php", "Allows you to receive blame information", "GitLabRepositoryFileApi"), #27
+    new Log("get_raw_file_from_repository", "/core/gitlabcommitapi.php", "Get the raw file contents.", "GitLabRepositoryFileApi"), #28
+    new Log("create_new_file_in_repository", "/core/gitlabcommitapi.php", "create a single file.", "GitLabRepositoryFileApi"), #29
+    new Log("update_existing_file_in_repository", "/core/gitlabcommitapi.php", "update a single file.", "GitLabRepositoryFileApi"), #30
+    new Log("delete_existing_file_in_repository", "/core/gitlabcommitapi.php", "delete a single file.", "GitLabRepositoryFileApi"), #31
+
 ];
 
 // Define parameters for specific logs
@@ -267,3 +275,32 @@ $logs[25]->list_params("note:text", "The text of the comment");
 $logs[25]->list_params("path:text", "The file path relative to the repository");
 $logs[25]->list_params("line:text", "The line number where the comment should be placed");
 $logs[25]->list_params("line_type:text", "The line type");
+
+$logs[26]->list_params("project_id:text", "Project id");
+$logs[26]->list_params("file_path:text", "The file path relative to the repository");
+$logs[26]->list_params("ref:text", "Branch name");
+
+$logs[27]->list_params("project_id:text", "Project id");
+$logs[27]->list_params("file_path:text", "The file path relative to the repository");
+$logs[27]->list_params("ref:text", "Branch name");
+
+$logs[28]->list_params("project_id:text", "Project id");
+$logs[28]->list_params("file_path:text", "The file path relative to the repository");
+$logs[28]->list_params("ref:text", "Branch name");
+
+$logs[29]->list_params("project_id:text", "Project id");
+$logs[29]->list_params("file_path:text", "The file path relative to the repository");
+$logs[29]->list_params("branch:text", "Branch name");
+$logs[29]->list_params("commit_message:text", "The commit message.");
+$logs[29]->list_params("content:text", "The file’s content.");
+
+$logs[30]->list_params("project_id:text", "Project id");
+$logs[30]->list_params("file_path:text", "The file path relative to the repository");
+$logs[30]->list_params("branch:text", "Branch name");
+$logs[30]->list_params("commit_message:text", "The commit message.");
+$logs[30]->list_params("content:text", "The file’s content.");
+
+$logs[31]->list_params("project_id:text", "Project id");
+$logs[31]->list_params("file_path:text", "The file path relative to the repository");
+$logs[31]->list_params("branch:text", "Branch name");
+$logs[31]->list_params("commit_message:text", "The commit message.");
