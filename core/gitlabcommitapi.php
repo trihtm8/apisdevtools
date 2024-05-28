@@ -24,11 +24,14 @@ class GitLabCommitApi {
      * @return mixed Response from the GitLab API.
      */
     public static function get_list_repository_commit($project_id, $ref = null, $path = null) {
+        if (self::$instance == null) {
+            return;
+        }
         $endpoint = "projects/$project_id/repository/commits";
         $params = [];
 
         if ($ref != null) {
-            $params["ref"] = $ref;
+            $params["ref_name"] = $ref;
         }
 
         if ($path != null) {
@@ -39,7 +42,7 @@ class GitLabCommitApi {
             $endpoint .= "?" . http_build_query($params);
         }
         
-        return call("GET", "projects/$project_id/repository/commits");
+        return call("GET", $endpoint);
     }
 
     /**
@@ -47,8 +50,10 @@ class GitLabCommitApi {
      * @param string $project_id The ID or URL-encoded path of the project.
      * @param string $branch Name of the branch to commit into. To create a new branch, also provide `start_branch`.
      * @param string $commit_message Commit message.
+     * @param string $aithor_name Specify the commit author’s name.
+     * @param string $author_email Specify the commit author’s email address.
      * @param array $actions An array of action hashes to commit as a batch. You must pass some attributes to use this function. 
-     * See this link https://docs.gitlab.com/ee/api/commits.html#create-a-commit-with-multiple-files-and-actions.
+     * See this [link](https://docs.gitlab.com/ee/api/commits.html#create-a-commit-with-multiple-files-and-actions).
      * Example:
      * 
      * [
@@ -106,12 +111,20 @@ class GitLabCommitApi {
      *       ]
      * @return mixed Response from the GitLab API.
      */
-    public static function create_commit($project_id, $branch, $commit_message, $actions, $force = false) {
+    public static function create_commit($project_id, $branch, $commit_message, $author_name, $author_email = null, $actions, $force = false) {
+        if (self::$instance == null) {
+            return;
+        }
         $data = [
             "branch" => $branch,
             "commit_message"=> $commit_message,
-            "actions" => $actions
+            "actions" => $actions,
+            "author_name" => $author_name
         ];
+
+        if ($force) {
+            $data["author_email"] = $author_email;
+        }
 
         if ($force) {
             $data["force"] = $force;
@@ -127,6 +140,9 @@ class GitLabCommitApi {
      * @return mixed Response from the GitLab API
      */
     public static function get_single_commit($project_id, $sha) {
+        if (self::$instance == null) {
+            return;
+        }
         return call("GET", "projects/$project_id/repository/commits/$sha");
     }
 
@@ -137,6 +153,9 @@ class GitLabCommitApi {
      * @return mixed Response from the GitLab API
      */
     public static function get_diff_commit($project_id, $sha) {
+        if (self::$instance == null) {
+            return;
+        }
         return call("GET", "projects/$project_id/repository/commits/$sha/diff");
     }
 
@@ -147,6 +166,9 @@ class GitLabCommitApi {
      * @return mixed Response from the GitLab API
      */
     public static function get_comment_of_commit($project_id, $sha) {
+        if (self::$instance == null) {
+            return;
+        }
         return call("GET", "projects/$project_id/repository/commits/$sha/comments");
     }
 
@@ -167,6 +189,10 @@ class GitLabCommitApi {
      * @return mixed Response from the GitLab API
      */
     public static function post_comment_to_commit($project_id, $sha, $note, $path = null, $line = null, $line_type = null) {
+        if (self::$instance == null) {
+            return;
+        }
+        
         $data = [
             "note" => $note,
         ];

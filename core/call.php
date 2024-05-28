@@ -1,18 +1,4 @@
 <?php
-/**
- * The URL of your GitLab server.
- * Change this to the URL of your GitLab server.
- *
- * @var string
- */
-$gitlab_url = "http://gitlab.localhost:2050";
-
-/**
- * The personal access token of a super admin account on your GitLab server.
- * Change this to the personal access token of a super admin account on your GitLab server.
- *
- * @var string
- */
 require_once "../constant.php";
 
 /**
@@ -89,7 +75,6 @@ function call($method, $endpoint, $data = null, $is_form_data = false, $token = 
         echo "<hr>";
         curl_close($ch);
     }
-    
 
     return $response;
 }
